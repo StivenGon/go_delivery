@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>GO Delivery - Inicio</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <header>
+            <h1>GO Delivery</h1>
+        </header>
+        <main>
+            <section>
+                <h2>Iniciar sesion</h2>
+
+                <form id="loginForm" action="/login" method="POST">
+                    <input type="email" name="email" placeholder="Email" required>
+                    <br></br>
+
+                    <input type="password" name="contraseña" placeholder="Contraseña" required>
+                    <br></br>
+
+                    <button type="submit">Ingresar</button>
+                </form>
+            </section>
+        </main>
+
+        <script>
+            const form = document.getElementById('loginForm');
+
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const formData = new FormData(form);
+                const payload = Object.fromEntries(formData.entries());
+
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    alert(result.message || 'No se pudo iniciar sesión');
+                    return;
+                }
+
+                window.location.href = result.redirectTo;
+            });
+        </script>
+    </body>
+</html>

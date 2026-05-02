@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Repartidor</title>
+  <link rel="stylesheet" href="repartidor.css">
+</head>
+
+<body>
+
+<h1>Pedidos disponibles</h1>
+
+<div class="container">
+
+{% for pedido in pedidos %}
+  <article class="
+    {% if pedido[3] == 'pendiente' %}estado-pendiente{% endif %}
+    {% if pedido[3] == 'aceptado' %}estado-aceptado{% endif %}
+    {% if pedido[3] == 'en_camino' %}estado-en-camino{% endif %}
+  ">
+
+    <h3>Pedido #{{ pedido[0] }}</h3>
+    <p>Cliente: {{ pedido[1] }}</p>
+    <p>Producto: {{ pedido[2] }}</p>
+    <p class="estado">Estado: {{ pedido[3] }}</p>
+
+    {% if pedido[3] == 'aceptado' %}
+      <form action="/tomar_pedido" method="POST">
+        <input type="hidden" name="id" value="{{ pedido[0] }}">
+        <button>Tomar pedido</button>
+      </form>
+    {% endif %}
+
+    {% if pedido[3] == 'en_camino' %}
+      <form action="/entregar_pedido" method="POST">
+        <input type="hidden" name="id" value="{{ pedido[0] }}">
+        <button>Marcar como entregado</button>
+      </form>
+    {% endif %}
+
+  </article>
+{% endfor %}
+
+</div>
+
+<script src="repartidor.js"></script>
+
+</body>
+</html>

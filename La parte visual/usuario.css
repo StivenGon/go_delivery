@@ -1,0 +1,95 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+/* Barra superior */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #8809a8;
+    padding: 10px 20px;
+}
+
+/* Título */
+.header h1 {
+    margin: 0;
+    font-size: 24px;
+    color:#f8f2f2
+}
+
+/* Menú hamburguesa */
+#btnMenu {
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+}
+
+/* Menú desplegable */
+#menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 10px;
+    background: white;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Cuando está activo */
+#menu.activo {
+    display: block;
+}
+
+#menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+#menu li {
+    margin: 10px 0;
+}
+
+#menu a {
+    text-decoration: none;
+    color: rgb(3, 3, 3);
+}
+
+/* Buscadores */
+.buscadores {
+    display: flex;
+    gap: 1px;
+}
+
+.buscadores input {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Secciones */
+.seccion {
+    margin: 20px;
+}
+
+.seccion h2 {
+    margin-bottom: 10px;
+}
+
+/* Tarjetas */
+.card {
+    background: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(17, 17, 17, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
